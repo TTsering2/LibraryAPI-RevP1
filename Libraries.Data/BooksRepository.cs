@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 using Libraries.Models;
 using Libraries.DTOs;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.JsonPatch;
+// using Microsoft.AspNetCore.JsonPatch;
 
 
 namespace Libraries.Data;
 public class BooksRepository : IBooksRepository 
-    {
+{
     private readonly LibrariesDbContext _context;
 
     public BooksRepository(LibrariesDbContext context)
@@ -85,40 +85,6 @@ public class BooksRepository : IBooksRepository
         };
     }
 
-        // public async Task UpdateBooksAsync(int bookId, UpdateBookDTO bookDto)
-        // {
-        //     Book book = await _context.Books.FindAsync(bookId);
-        //     if (book == null)
-        //     {
-        //         return;
-        //     }
-
-        //     book.Title = bookDto.Title;
-        //     book.Summary = bookDto.Summary;
-
-        //     if(book.Author.Name != bookDto.AuthorName){
-        //         Author author = await _context.Authors.FirstOrDefaultAsync(a => a.Name == bookDto.AuthorName);
-
-        //         if(author == null) {
-        //             author = new Author { Name = bookDto.AuthorName};
-        //             _context.Authors.Add(author);
-        //         }
-
-        //         book.Author = author;
-        //     }
-
-        //     if(!string.IsNullOrEmpty(bookDto.GenreName) && book.Genre?.GenreName != bookDto.GenreName) {
-        //         Genre genre = await _context.Genres.FirstOrDefaultAsync(g => g.GenreName == bookDto.GenreName);
-                
-        //         if(genre == null) {
-        //             genre = new Genre { GenreName = bookDto.GenreName };
-        //             _context.Genres.Add(genre);
-        //         }
-        //         book.Genre = genre;
-        //     }
-
-        //     await _context.SaveChangesAsync();
-        // }
     public async Task UpdateBooksAsync(int bookId, UpdateBookDTO updatedBookDto)
     {
         Book book = await _context.Books

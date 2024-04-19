@@ -11,7 +11,7 @@ public interface IGenresRepository
 {
     Task<IEnumerable<Genre>> GetAllGenresAsync();
     Task<Genre> GetAGenreAsync(int genreId);
-    Task UpdateAGenreAsync(int genreId, Genre genre);
+    Task UpdateAGenreAsync(int genreId, Genre updatedGenre);
     Task DeleteAGenreAsync(int genreId);
     Task<Genre> CreateGenreAsync(Genre genre);
 }
