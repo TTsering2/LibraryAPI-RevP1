@@ -19,7 +19,7 @@ public class BookController : ControllerBase
         _bookService = bookService;
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("id={id}")]
     public async Task<ActionResult<BookDTO>> GetBookById(int id){
         try{
             BookDTO book = await _bookService.GetBookByIdAsync(id);
@@ -39,7 +39,7 @@ public class BookController : ControllerBase
             IEnumerable<BookDTO> books = await _bookService.GetAllBooksAsync();
             return Ok(books);
         } catch (Exception ex){
-             return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving books: {ex.Message}");
+            return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving books: {ex.Message}");
         }
     }
 
@@ -71,6 +71,39 @@ public class BookController : ControllerBase
             return NoContent(); // Return 204 No Content for successful deletion
         }catch (Exception ex){
             return StatusCode(StatusCodes.Status500InternalServerError, $"Error deleting book: {ex.Message}");
+        }
+    }
+
+    [HttpGet("by-author")]
+    public async Task<ActionResult<IEnumerable<BookDTO>>> GetAllBooksByAuthorName([FromQuery]string authorName)
+    {
+        try {
+            IEnumerable<BookDTO> books = await _bookService.GetBooksByAuthorNameAsync(authorName);
+
+            if(books == null || !books.Any()){
+                return NotFound("No books found for the given author.");
+            }
+
+            return Ok(books);
+        } catch (Exception ex) {
+            return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving books by author: {ex.Message}");
+        }
+    }
+
+    [HttpGet("by-genre")]
+    public async Task<ActionResult<IEnumerable<BookDTO>>> GetAllBooksByGenreName([FromQuery] string genreName)
+    {
+        try {
+            Console.WriteLine($"LOOK AT ME {genreName}");
+            IEnumerable<BookDTO> books = await _bookService.GetBooksByGenreNameAsync(genreName);
+
+            if(books == null || !books.Any()){
+                return NotFound("No books found for the given genre.");
+            }
+
+            return Ok(books);
+        } catch (Exception ex) {
+            return StatusCode(StatusCodes.Status500InternalServerError, $"Error retrieving books by genre: {ex.Message}");
         }
     }
 }

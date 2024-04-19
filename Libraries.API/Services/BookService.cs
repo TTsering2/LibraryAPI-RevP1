@@ -31,4 +31,11 @@ public class BookService : IBookService
     public async Task DeleteBookAsync(int bookId){
         await _repository.DeleteBookAsync(bookId);
     }
+
+    public async Task <IEnumerable<BookDTO>> GetBooksByAuthorNameAsync(string authorName){
+       return await _repository.GetBooksByAuthorNameAsync(authorName);
+    }
+      public async Task <IEnumerable<BookDTO>> GetBooksByGenreNameAsync(string genreName){
+        return await _repository.GetBooksByGenreNameAsync(genreName);
+    }
 }
