@@ -13,6 +13,12 @@ builder.Services.AddDbContext<LibrariesDbContext>(option => option.UseSqlServer(
 builder.Services.AddScoped<IBooksRepository, BooksRepository>();
 builder.Services.AddScoped<IBookService, BookService>();
 
+builder.Services.AddScoped<IAuthorsRepository, AuthorsRepository>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
+
+builder.Services.AddScoped<IGenresRepository, GenresRepository>();
+builder.Services.AddScoped<IGenreService, GenreService>();
+
 builder.Services.AddControllers()
 .AddJsonOptions(options =>
         {
