@@ -1601,6 +1601,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "Libraries.DTOs": "1.0.0",
           "Libraries.Models": "1.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.4"
         },
@@ -1609,6 +1610,16 @@
         },
         "runtime": {
           "bin/placeholder/Libraries.Data.dll": {}
+        }
+      },
+      "Libraries.DTOs/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Libraries.DTOs.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Libraries.DTOs.dll": {}
         }
       },
       "Libraries.Models/1.0.0": {
@@ -4535,6 +4546,11 @@
       "path": "../Libraries.Data/Libraries.Data.csproj",
       "msbuildProject": "../Libraries.Data/Libraries.Data.csproj"
     },
+    "Libraries.DTOs/1.0.0": {
+      "type": "project",
+      "path": "../Libraries.DTOs/Libraries.DTOs.csproj",
+      "msbuildProject": "../Libraries.DTOs/Libraries.DTOs.csproj"
+    },
     "Libraries.Models/1.0.0": {
       "type": "project",
       "path": "../Libraries.Models/Libraries.Models.csproj",
@@ -4543,6 +4559,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "Libraries.DTOs >= 1.0.0",
       "Libraries.Data >= 1.0.0",
       "Libraries.Models >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 8.0.4",
@@ -4578,6 +4595,9 @@
           "projectReferences": {
             "/Users/tsering/Desktop/Revature/Project2/Libraries.Data/Libraries.Data.csproj": {
               "projectPath": "/Users/tsering/Desktop/Revature/Project2/Libraries.Data/Libraries.Data.csproj"
+            },
+            "/Users/tsering/Desktop/Revature/Project2/Libraries.DTOs/Libraries.DTOs.csproj": {
+              "projectPath": "/Users/tsering/Desktop/Revature/Project2/Libraries.DTOs/Libraries.DTOs.csproj"
             },
             "/Users/tsering/Desktop/Revature/Project2/Libraries.Models/Libraries.Models.csproj": {
               "projectPath": "/Users/tsering/Desktop/Revature/Project2/Libraries.Models/Libraries.Models.csproj"

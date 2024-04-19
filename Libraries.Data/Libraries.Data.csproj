@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Libraries.Models\Libraries.Models.csproj" />
+    <ProjectReference Include="..\Libraries.DTOs\Libraries.DTOs.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

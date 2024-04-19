@@ -29,6 +29,9 @@
               "/Users/tsering/Desktop/Revature/Project2/Libraries.Data/Libraries.Data.csproj": {
                 "projectPath": "/Users/tsering/Desktop/Revature/Project2/Libraries.Data/Libraries.Data.csproj"
               },
+              "/Users/tsering/Desktop/Revature/Project2/Libraries.DTOs/Libraries.DTOs.csproj": {
+                "projectPath": "/Users/tsering/Desktop/Revature/Project2/Libraries.DTOs/Libraries.DTOs.csproj"
+              },
               "/Users/tsering/Desktop/Revature/Project2/Libraries.Models/Libraries.Models.csproj": {
                 "projectPath": "/Users/tsering/Desktop/Revature/Project2/Libraries.Models/Libraries.Models.csproj"
               }
@@ -114,6 +117,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "/Users/tsering/Desktop/Revature/Project2/Libraries.DTOs/Libraries.DTOs.csproj": {
+                "projectPath": "/Users/tsering/Desktop/Revature/Project2/Libraries.DTOs/Libraries.DTOs.csproj"
+              },
               "/Users/tsering/Desktop/Revature/Project2/Libraries.Models/Libraries.Models.csproj": {
                 "projectPath": "/Users/tsering/Desktop/Revature/Project2/Libraries.Models/Libraries.Models.csproj"
               }
@@ -146,6 +152,64 @@
               "version": "[8.0.4, )"
             }
           },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.203/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/tsering/Desktop/Revature/Project2/Libraries.DTOs/Libraries.DTOs.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/tsering/Desktop/Revature/Project2/Libraries.DTOs/Libraries.DTOs.csproj",
+        "projectName": "Libraries.DTOs",
+        "projectPath": "/Users/tsering/Desktop/Revature/Project2/Libraries.DTOs/Libraries.DTOs.csproj",
+        "packagesPath": "/Users/tsering/.nuget/packages/",
+        "outputPath": "/Users/tsering/Desktop/Revature/Project2/Libraries.DTOs/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/tsering/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
           "imports": [
             "net461",
             "net462",
