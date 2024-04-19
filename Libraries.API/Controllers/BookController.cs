@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.JsonPatch;
 using Libraries.DTOs;
 using Libraries.Services;
 using System.Collections.Generic;
@@ -53,10 +54,10 @@ public class BookController : ControllerBase
         }
     }
 
-    [HttpPut("{id}")]
-    public async Task<ActionResult> UpdateBook(int id, UpdateBookDTO bookDto){
+    [HttpPatch("{id}")]
+    public async Task<ActionResult> UpdateBook(int id, UpdateBookDTO patchDocument){
         try{
-            await _bookService.UpdateBooksAsync(id, bookDto);
+            await _bookService.UpdateBooksAsync(id, patchDocument);
             return NoContent(); // Return 204 No Content for successful update
         }
         catch (Exception ex){

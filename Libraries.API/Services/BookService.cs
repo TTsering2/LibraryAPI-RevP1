@@ -1,6 +1,8 @@
 using Libraries.DTOs;
 using Libraries.Models;
 using Libraries.Data;
+// using Microsoft.AspNetCore.JsonPatch;
+
 
 namespace Libraries.Services;
 
@@ -24,8 +26,9 @@ public class BookService : IBookService
         return await _repository.CreateBookAsync(bookDto);
     }
 
-    public async Task UpdateBooksAsync(int bookId, UpdateBookDTO bookDto){
-        await _repository.UpdateBooksAsync(bookId, bookDto);
+    public async Task UpdateBooksAsync(int bookId, UpdateBookDTO patchDocument)
+    {
+        await _repository.UpdateBooksAsync(bookId, patchDocument);
     }
 
     public async Task DeleteBookAsync(int bookId){
