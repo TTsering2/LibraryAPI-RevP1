@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Genres.API.Controllers
+namespace Genres.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

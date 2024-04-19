@@ -19,7 +19,7 @@ public class AuthorService : IAuthorService
 
     public async Task<Author> GetAnAuthorAsync (int authorId)
     {
-        return await _repository.GetAGenreAsync(authorId);
+        return await _repository.GetAnAuthorAsync(authorId);
     }
 
     public async Task UpdateAnAuthorAsync(int authorId, Author updatedAuthor)

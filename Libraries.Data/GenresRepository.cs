@@ -1,4 +1,5 @@
 using System.Linq;
+using System;
 using System.Threading.Tasks;
 using Libraries.Models;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,10 @@ public class GenresRepository : IGenresRepository
         _context = context;
     }
 
+    public async Task<Genre>GetAGenreAsync(int genreId)
+    {
+        return await _context.Genres.FindAsync(genreId);
+    }
     public async Task<IEnumerable<Genre>> GetAllGenresAsync()
     {
         List<Genre> genres = await _context.Genres.ToListAsync();
@@ -23,10 +28,10 @@ public class GenresRepository : IGenresRepository
     {
         if(updatedGenre == null)
         {
-            throw new ArugumentNullException(nameof(updatedGenre));
+            throw new ArgumentNullException(nameof(updatedGenre));
         }
 
-        Genre genre = await _context.Genres,FindAsync(genreId);
+        Genre genre = await _context.Genres.FindAsync(genreId);
 
         if(genre == null)
         {
@@ -42,10 +47,10 @@ public class GenresRepository : IGenresRepository
         await _context.SaveChangesAsync();
     }
 
-    public async Task DeleteAGenre(int genreId){
+    public async Task DeleteAGenreAsync(int genreId){
         Genre genre = await _context.Genres.FindAsync(genreId);
 
-        if(book == null){
+        if(genre == null){
             return;
         }
 
@@ -58,7 +63,7 @@ public class GenresRepository : IGenresRepository
             throw new ArgumentNullException(nameof(newGenre));
         }
 
-        Genre existGenre = await _context.Genres.FirstOrDefaultAsync(g=>g.GenreName == newGenre.genreName);
+        Genre existGenre = await _context.Genres.FirstOrDefaultAsync(g=>g.GenreName == newGenre.GenreName);
 
         if(existGenre != null)
         {

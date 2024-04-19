@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Authors.API.Controllers
+namespace Authors.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -26,7 +26,7 @@ public class AuthorController : ControllerBase
     {
         try
         {
-            List<Author> authors = await _authorService.GetAllAuthorsAsync();
+            IEnumerable<Author> authors = await _authorService.GetAllAuthorsAsync();
             return Ok(authors);
         }
         catch (Exception ex)

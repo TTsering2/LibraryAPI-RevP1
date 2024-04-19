@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Libraries.Models;
 using Libraries.Data;
 
-namespace Libraries.Services
+namespace Libraries.Services;
 
 public class GenreService : IGenreService
 {

@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Libraries.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Libraries.Data
+namespace Libraries.Data;
 
 public class AuthorsRepository : IAuthorsRepository
-    {
+{
     private readonly LibrariesDbContext _context;
 
      public AuthorsRepository(LibrariesDbContext context)
