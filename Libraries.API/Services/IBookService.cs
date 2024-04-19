@@ -1,7 +1,7 @@
 using Libraries.Models;
-using Libraries.API.DTOs;
+using Libraries.DTOs;
 
-namespace Libraries.API.Services;
+namespace Libraries.Services;
 
 public interface IBookService 
 {

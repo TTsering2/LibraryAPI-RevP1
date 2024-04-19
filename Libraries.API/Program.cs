@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Libraries.Data;
 using Libraries.Models;
 using Libraries.Services;
-using Libraries.API.DTOs;
+using Libraries.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 

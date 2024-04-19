@@ -1,4 +1,4 @@
-namespace Libraries.API.DTOs;
+namespace Libraries.DTOs;
 
 public class BookDTO 
 {

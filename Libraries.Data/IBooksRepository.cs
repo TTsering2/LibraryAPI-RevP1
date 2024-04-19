@@ -1,4 +1,4 @@
-using Libraries.API.DTOs;
+using Libraries.DTOs;
 using Libraries.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;

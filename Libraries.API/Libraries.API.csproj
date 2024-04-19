@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Libraries.Models\Libraries.Models.csproj" />
     <ProjectReference Include="..\Libraries.Data\Libraries.Data.csproj" />
+    <ProjectReference Include="..\Libraries.DTOs\Libraries.DTOs.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,7 +22,4 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
-
-
-
 </Project>

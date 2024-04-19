@@ -1,4 +1,4 @@
-using Libraries.API.DTOs;
+using Libraries.DTOs;
 using Libraries.Models;
 using Libraries.Data;
 
@@ -7,7 +7,7 @@ namespace Libraries.Services;
 public class BookService : IBookService
 {
     private readonly IBooksRepository _repository;
-    public BookService(IBooksRespository repository)
+    public BookService(IBooksRepository repository)
     {
         _repository = repository;
     }

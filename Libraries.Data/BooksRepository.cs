@@ -1,67 +1,67 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Libraries.Models;
-using Libraries.API.DTOs;
+using Libraries.DTOs;
 using Microsoft.EntityFrameworkCore;
-
 
 namespace Libraries.Data;
 
-public class BooksRepository : IBooksRepository 
-{
-    private readonly LibrariesDbContext _context;
-
-    public BooksRepository(LibrariesDbContext context)
+    public class BooksRepository : IBooksRepository 
     {
-        _context = context;
-    }
+        private readonly LibrariesDbContext _context;
 
-    public async Task<BookDTO> GetBookByIdAsync(int bookId)
-    {
-        BookDTO book = await _context.Books 
-            .Where(b => b.Id == bookId)
-            .Include(b => b.Author)
-            .Include(b => b.Genre)
-            .Select(b => new BookDTO
-            {
-                Id = b.Id,
-                Title = b.Title,
-                Summary = b.Summary,
-                AuthorName = b.Author.Name;
-            })
-            .FirstOrDefaultAsync();
-        return book;
-    }
+        public BooksRepository(LibrariesDbContext context)
+        {
+            _context = context;
+        }
 
-    public async Task<IEnumerable<BookDTO>> GetAllBooksAsync()
-    {
-        List<BookDto> books = await _context.Books
-            .Include(b => b.Author)
-            .Include(b => b.Genre)
-            .Select(b => new BookDTO
-            {
-                Id = b.Id,
-                Title = b.Title,
-                Summary = b.Summary,
-                AuthorName = b.Author.Name,
-                GenreName = b.Genre.GenreName
-            })
-            .ToListAsync();
+        public async Task<BookDTO> GetBookByIdAsync(int bookId)
+        {
+            BookDTO book = await _context.Books 
+                .Where(b => b.Id == bookId)
+                .Include(b => b.Author)
+                .Include(b => b.Genre)
+                .Select(b => new BookDTO
+                {
+                    Id = b.Id,
+                    Title = b.Title,
+                    Summary = b.Summary,
+                    AuthorName = b.Author.Name
+                })
+                .FirstOrDefaultAsync();
 
-        return books;
-    }
+            return book; // Corrected return statement within the method block
+        }
 
-    public async Task<BookDTO> CreateBookAsync(BookCreateDTO bookDto)
-    {
-        Author author = await _context.Authors
-            .FirstOrDefaultAsync(a => a.Name == bookDto.AuthorName)
-            ?? new Author { Name = bookDto.AuthorName };
+        public async Task<IEnumerable<BookDTO>> GetAllBooksAsync()
+        {
+            List<BookDTO> books = await _context.Books
+                .Include(b => b.Author)
+                .Include(b => b.Genre)
+                .Select(b => new BookDTO
+                {
+                    Id = b.Id,
+                    Title = b.Title,
+                    Summary = b.Summary,
+                    AuthorName = b.Author.Name,
+                    GenreName = b.Genre.GenreName
+                })
+                .ToListAsync();
 
-        Genre genre = await _context.Genres
-            .FirstOrDefaultAsync(g => g.GenreName == bookDto.GenreName)
-            ?? new Genre { GenreName = bookDto.GenreName };
+            return books;
+        }
 
-        Book newBook = new Book
+        public async Task<BookDTO> CreateBookAsync(BookCreateDTO bookDto)
+        {
+            Author author = await _context.Authors
+                .FirstOrDefaultAsync(a => a.Name == bookDto.AuthorName)
+                ?? new Author { Name = bookDto.AuthorName };
+
+            Genre genre = await _context.Genres
+                .FirstOrDefaultAsync(g => g.GenreName == bookDto.GenreName)
+                ?? new Genre { GenreName = bookDto.GenreName };
+
+            Book newBook = new Book
             {
                 Title = bookDto.Title,
                 Summary = bookDto.Summary,
@@ -69,10 +69,10 @@ public class BooksRepository : IBooksRepository
                 Genre = genre
             };
 
-        _context.Books.Add(newBook);
-        await _context.SaveChangesAsync();
+            _context.Books.Add(newBook);
+            await _context.SaveChangesAsync();
 
-        return new BookDTO
+            return new BookDTO
             {
                 Id = newBook.Id,
                 Title = newBook.Title,
@@ -80,31 +80,33 @@ public class BooksRepository : IBooksRepository
                 AuthorName = newBook.Author.Name,
                 GenreName = newBook.Genre.GenreName
             };
-    }
+        }
 
-    public async Task UpdateBooksAsync(int bookId, UpdateBookDTO bookDto)
-    {
-        Book book = await _context.Books.FindAsync(bookId);
-        if(book == null)
+        public async Task UpdateBooksAsync(int bookId, UpdateBookDTO bookDto)
         {
-            return;
+            Book book = await _context.Books.FindAsync(bookId);
+            if (book == null)
+            {
+                return;
+            }
+
+            book.Title = bookDto.Title;
+            book.Summary = bookDto.Summary;
+
+            await _context.SaveChangesAsync();
         }
 
-        book.Title = bookDto.Title;
-        book.Summary = bookDto.Summary;
+        public async Task DeleteBookAsync(int bookId)
+        {
+            Book book = await _context.Books.FindAsync(bookId);
 
-        await _context.SaveChangesAsync();
-    }
+            if (book == null)
+            {
+                return;
+            }
 
-    public async Task DeleteBookAsync(int bookId)
-    {
-        Book book = await _context.Books.FindAsync(bookId);
-
-        if(book == null){
-            return;
+            _context.Books.Remove(book);
+            await _context.SaveChangesAsync();
         }
-
-        _context.Books.Remove(book);
-        await _context.SaveChangesAsync();
     }
-}
+
